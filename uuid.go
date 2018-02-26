@@ -56,8 +56,8 @@ func (uuid *UUID) SetBSON(raw bson.Raw) error {
 	return nil
 }
 
-func (uuid *UUID) MarshalText() ([]byte, error) {
-	return satori.UUID(*uuid).MarshalText()
+func (uuid UUID) MarshalText() ([]byte, error) {
+	return satori.UUID(uuid).MarshalText()
 }
 
 func (uuid *UUID) UnmarshalText(data []byte) error {
