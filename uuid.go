@@ -11,6 +11,10 @@ import (
 type UUID satori.UUID
 
 var (
+	Nil = UUID{}
+)
+
+var (
 	_ bson.Getter              = (*UUID)(nil)
 	_ bson.Setter              = (*UUID)(nil)
 	_ encoding.TextMarshaler   = (*UUID)(nil)
