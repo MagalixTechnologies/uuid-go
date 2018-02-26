@@ -26,6 +26,11 @@ func FromString(raw string) (UUID, error) {
 	return UUID(id), err
 }
 
+func FromBytes(raw []byte) (UUID, error) {
+	id, err := satori.FromBytes(raw)
+	return UUID(id), err
+}
+
 func (uuid UUID) String() string {
 	return satori.UUID(uuid).String()
 }
