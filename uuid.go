@@ -8,6 +8,10 @@ import (
 	satori "github.com/satori/go.uuid"
 )
 
+const (
+	Size = satori.Size
+)
+
 type UUID satori.UUID
 
 var (
@@ -33,6 +37,10 @@ func FromBytes(raw []byte) (UUID, error) {
 
 func (uuid UUID) String() string {
 	return satori.UUID(uuid).String()
+}
+
+func (uuid UUID) Bytes() []byte {
+	return satori.UUID(uuid).Bytes()
 }
 
 func NewV4() UUID {
