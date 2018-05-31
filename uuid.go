@@ -52,6 +52,14 @@ func (uuid UUID) GetBSON() (interface{}, error) {
 	return uuid.String(), nil
 }
 
+func IsNil(id UUID) bool {
+	return id == Nil
+}
+
+func (uuid UUID) IsNil() bool {
+	return IsNil(uuid)
+}
+
 func (uuid *UUID) SetBSON(raw bson.Raw) error {
 	var str string
 	err := raw.Unmarshal(&str)
