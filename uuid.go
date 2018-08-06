@@ -67,6 +67,12 @@ func (uuid *UUID) SetBSON(raw bson.Raw) error {
 		return err
 	}
 
+	if str == "" {
+		// TODO Yasser, 2018-08-06: log warning?
+		*uuid = Nil
+		return nil
+	}
+
 	id, err := FromString(str)
 	if err != nil {
 		return err
