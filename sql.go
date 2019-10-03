@@ -14,7 +14,12 @@ func (uuid UUID) Value() (driver.Value, error) {
 func (uuid *UUID) Scan(src interface{}) error {
 	id := satori.UUID(*uuid)
 	idPtr := &id
-	return idPtr.Scan(src)
+	err := idPtr.Scan(src)
+	if err != nil {
+		return err
+	}
+	*uuid = UUID(id)
+	return nil
 }
 
 // NullUUID can be used with the standard sql package to represent a
