@@ -43,8 +43,33 @@ func (uuid UUID) Bytes() []byte {
 	return satori.UUID(uuid).Bytes()
 }
 
+// NewV1 returns UUID based on current timestamp and MAC address.
+func NewV1() UUID {
+	id := satori.Must(satori.NewV1())
+	return UUID(id)
+}
+
+// NewV2 returns DCE Security UUID based on POSIX UID/GID.
+func NewV2(domain byte) UUID {
+	id := satori.Must(satori.NewV2(domain))
+	return UUID(id)
+}
+
+// NewV3 returns UUID based on MD5 hash of namespace UUID and name.
+func NewV3(ns UUID, name string) UUID {
+	id := satori.NewV3(satori.UUID(ns), name)
+	return UUID(id)
+}
+
+// NewV4 returns random generated UUID.
 func NewV4() UUID {
 	id := satori.Must(satori.NewV4())
+	return UUID(id)
+}
+
+// NewV5 returns UUID based on SHA-1 hash of namespace UUID and name.
+func NewV5(ns UUID, name string) UUID {
+	id := satori.NewV5(satori.UUID(ns), name)
 	return UUID(id)
 }
 
