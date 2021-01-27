@@ -30,6 +30,19 @@ func FromString(raw string) (UUID, error) {
 	return UUID(id), err
 }
 
+func FromStringSlice(raws []string) ([]UUID, error) {
+	uuids := make([]UUID, 0, len(raws))
+
+	for _, raw := range raws {
+		uid, err := FromString(raw)
+		if err != nil {
+			return nil, err
+		}
+		uuids = append(uuids, uid)
+	}
+	return uuids, nil
+}
+
 func FromBytes(raw []byte) (UUID, error) {
 	id, err := satori.FromBytes(raw)
 	return UUID(id), err
